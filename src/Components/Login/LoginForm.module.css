@@ -1,0 +1,54 @@
+.form {
+  margin-bottom: 2rem;
+}
+
+.forgot {
+  display: block;
+  color: #c6c6c6;
+  padding: 0.5rem 0;
+  line-height: 1;
+
+  /* font-size: 0.9rem;
+  opacity: 0.5;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem; */
+}
+
+/* .forgot:after {
+  content: '';
+  height: 2px;
+  width: 100%;
+  background: currentColor;
+  display: block;
+} */
+
+.register {
+  margin-top: 4rem;
+}
+
+.register p {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.subtitle {
+  font-family: var(--type-second);
+  line-height: 1;
+  font-size: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.subtitle::after {
+  content: '';
+  display: block;
+  background: #cb3939;
+  height: 0.5rem;
+  position: absolute;
+  bottom: 0;
+  left: -2px;
+  z-index: -1;
+  width: 2.5rem;
+  border-radius: 0.2rem;
+}
