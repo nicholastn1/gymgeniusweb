@@ -92,3 +92,15 @@ a {
     transform: initial;
   }
 }
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(
+    100vh
+  ); /* To expand considering the footer: min-height: calc(100vh + footer_height);*/
+}
+
+.AppBody {
+  flex: 1;
+}
