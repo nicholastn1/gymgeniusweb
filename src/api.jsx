@@ -1,12 +1,11 @@
-export const API_URL = 'https://gymgeniusapi.onrender.com';
-// export const API_URL = 'http://localhost:3000';
+export const API_URL = import.meta.env.VITE_API_URL;
 
 export function LOGIN_POST(body) {
   return {
-    url: API_URL + '/login',
+    url: API_URL + "/api/v1/login",
     options: {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     },
   };
@@ -14,9 +13,9 @@ export function LOGIN_POST(body) {
 
 export function USER_GET(token) {
   return {
-    url: API_URL + '/current_user',
+    url: API_URL + "/api/v1/current_user",
     options: {
-      method: 'GET',
+      method: "GET",
       headers: {
         Authorization: token,
       },
@@ -26,10 +25,10 @@ export function USER_GET(token) {
 
 export function USER_POST(body) {
   return {
-    url: API_URL + '/signup',
+    url: API_URL + "/api/v1/signup",
     options: {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     },
   };
@@ -37,11 +36,11 @@ export function USER_POST(body) {
 
 export function FORGOT_PASSWORD(body) {
   return {
-    url: API_URL + '/password/forgot',
+    url: API_URL + "/api/v1/password/forgot",
     options: {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
     },
@@ -50,11 +49,25 @@ export function FORGOT_PASSWORD(body) {
 
 export function RESET_PASSWORD(body) {
   return {
-    url: API_URL + '/password/reset',
+    url: API_URL + "/api/v1/password/reset",
     options: {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
+
+export function USER_UPDATE(body, token) {
+  return {
+    url: API_URL + "/api/v1/users",
+    options: {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
       },
       body: JSON.stringify(body),
     },

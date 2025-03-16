@@ -1,0 +1,179 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 2rem 0;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 40rem;
+  margin-top: 3rem;
+}
+
+.intro p {
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.loginButton {
+  background: #cb3939;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.4rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: 0.2s;
+  max-width: 12rem;
+  text-align: center;
+}
+
+.loginButton:hover {
+  background: #b33232;
+  transform: scale(1.05);
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.featuresTitle {
+  font-size: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.featuresTitle::after {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 0.5rem;
+  background-color: #cb3939;
+  position: absolute;
+  bottom: 5px;
+  left: -5px;
+  border-radius: 0.2rem;
+  z-index: -1;
+}
+
+.featuresList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.featuresItem {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: #2a2a2a;
+  transition: 0.3s;
+}
+
+.featuresItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.featuresIcon {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cb3939;
+  border-radius: 50%;
+  padding: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.featuresIcon svg {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.featuresItem h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.featuresItem p {
+  color: #ccc;
+  line-height: 1.5;
+  background-color: transparent;
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  padding: 3rem 2rem;
+  background-color: #2a2a2a;
+  border-radius: 0.5rem;
+  margin: 2rem 0;
+}
+
+.cta h2 {
+  font-size: 2rem;
+  max-width: 30rem;
+}
+
+.cta p {
+  font-size: 1.2rem;
+  max-width: 40rem;
+  color: #ccc;
+  background-color: transparent;
+}
+
+.ctaButton {
+  background: #cb3939;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: 0.2s;
+  margin-top: 1rem;
+}
+
+.ctaButton:hover {
+  background: #b33232;
+  transform: scale(1.05);
+}
+
+@media (max-width: 64rem) {
+  .intro p {
+    font-size: 1.2rem;
+  }
+
+  .cta h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  .home {
+    gap: 3rem;
+  }
+
+  .featuresList {
+    grid-template-columns: 1fr;
+  }
+
+  .cta {
+    padding: 2rem 1rem;
+  }
+}

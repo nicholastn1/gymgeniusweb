@@ -1,13 +1,16 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './Components/Login/Login';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import Home from './Components/Home';
-import React from 'react';
-import './App.css';
-import { UserStorage } from './UserContext';
-import User from './Components/User/User';
-import ProtectedRoute from './Components/Helper/ProtectedRoute';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./Components/Login/Login";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import Home from "./Components/Home";
+import React from "react";
+import "./App.css";
+import { UserStorage } from "./UserContext";
+import Workouts from "./Components/User/Workouts";
+import Exercises from "./Components/User/Exercises";
+import Statistics from "./Components/User/Statistics";
+import Profile from "./Components/User/Profile";
+import ProtectedRoute from "./Components/Helper/ProtectedRoute";
 
 const App = () => {
   return (
@@ -20,10 +23,34 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="login/*" element={<Login />} />
               <Route
-                path="account/*"
+                path="profile"
                 element={
                   <ProtectedRoute>
-                    <User />
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="workouts"
+                element={
+                  <ProtectedRoute>
+                    <Workouts />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="exercises"
+                element={
+                  <ProtectedRoute>
+                    <Exercises />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="statistics"
+                element={
+                  <ProtectedRoute>
+                    <Statistics />
                   </ProtectedRoute>
                 }
               />
