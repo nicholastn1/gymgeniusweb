@@ -4,6 +4,41 @@
   gap: 1rem;
 }
 
+.navLink {
+  background: #242424;
+  border-radius: 0.2rem;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.navLink:hover,
+.navLink:focus {
+  background: #2a2a2a;
+  box-shadow: 0 0 0 3px rgba(203, 57, 57, 0.1);
+  border-color: #cb3939;
+  outline: none;
+}
+
+.navLink:global(.active) {
+  background: #2a2a2a;
+  box-shadow: 0 0 0 3px rgba(203, 57, 57, 0.1);
+  border-color: #cb3939;
+}
+
+.navLink:global(.active) svg > * {
+  fill: #cb3939 !important;
+}
+
+.navLink:global(.active) svg path {
+  fill: #cb3939 !important;
+}
+
 .nav a,
 .nav button {
   background: #242424;

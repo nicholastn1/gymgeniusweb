@@ -39,8 +39,13 @@ npm install
 ```
 
 3. Configuração da API:
-   - Por padrão, a aplicação se conecta à API em produção: `https://gymgeniusapi.onrender.com`
-   - Para desenvolvimento local, você pode modificar a URL da API no arquivo `src/api.jsx`
+   - Por padrão, a aplicação se conecta à API em produção
+   - Para desenvolvimento local, crie um arquivo `.env.local` baseado no `.env.local.sample` e configure a variável `VITE_API_URL`
+   - Exemplo de configuração para desenvolvimento local:
+     ```
+     VITE_API_URL=http://localhost:3000
+     ```
+   - Em produção, a URL da API é configurada automaticamente através das variáveis de ambiente do ambiente de deploy
 
 ## Executando o Projeto
 

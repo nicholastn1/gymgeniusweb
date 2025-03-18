@@ -73,3 +73,17 @@ export function USER_UPDATE(body, token) {
     },
   };
 }
+
+export function USER_PREFERENCES_UPDATE(body, token) {
+  return {
+    url: API_URL + "/api/v1/user/preferences",
+    options: {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}

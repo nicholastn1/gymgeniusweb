@@ -5,21 +5,25 @@ import UserNav from "./UserNav";
 import { ReactComponent as User } from "../../Assets/user.svg";
 import { ReactComponent as Lock } from "../../Assets/security.svg"; // Reutilizando o ícone de logout como cadeado
 import { ReactComponent as Settings } from "../../Assets/preferences.svg"; // Reutilizando o ícone de estatísticas como configurações
-import { USER_UPDATE } from "../../api";
+import { USER_UPDATE, USER_PREFERENCES_UPDATE } from "../../api";
 import useFetch from "../../Hooks/useFetch";
+import useForm from "../../Hooks/useForm";
 
 const Profile = () => {
   const { data, setData } = React.useContext(UserContext);
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const password = useForm("password");
+  const confirmPassword = useForm("password");
   const [image, setImage] = React.useState("");
   const [previewImage, setPreviewImage] = React.useState("");
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [activeSection, setActiveSection] = React.useState("personal");
+  const [notifications, setNotifications] = React.useState(false);
+  const [reminders, setReminders] = React.useState(false);
+  const [darkMode, setDarkMode] = React.useState(false);
   const { request } = useFetch();
 
   React.useEffect(() => {
@@ -27,6 +31,9 @@ const Profile = () => {
       setName(data.name || "");
       setEmail(data.email || "");
       setPreviewImage(data.image || "");
+      setNotifications(data.notifications || false);
+      setReminders(data.reminders || false);
+      setDarkMode(data.dark_mode || false);
     }
   }, [data]);
 
@@ -61,13 +68,19 @@ const Profile = () => {
       },
     };
 
-    if (email !== data.email) {
-      updates.user.email = email;
-    }
-
-    if (password) {
-      updates.user.password = password;
-      updates.user.password_confirmation = confirmPassword;
+    if (password.value) {
+      if (!password.validate()) {
+        setError("Por favor, corrija os erros no formulário.");
+        setLoading(false);
+        return;
+      }
+      if (password.value !== confirmPassword.value) {
+        setError("As senhas não coincidem.");
+        setLoading(false);
+        return;
+      }
+      updates.user.password = password.value;
+      updates.user.password_confirmation = confirmPassword.value;
     }
 
     if (image) {
@@ -83,15 +96,54 @@ const Profile = () => {
         if (json.user) {
           setData(json.user);
         }
-        if (password) {
-          setPassword("");
-          setConfirmPassword("");
+        if (password.value) {
+          password.reset();
+          confirmPassword.reset();
         }
       } else {
         setError(json.message || "Erro ao atualizar perfil.");
       }
     } catch (err) {
       setError("Ocorreu um erro ao atualizar o perfil.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleSavePreferences(event) {
+    event.preventDefault();
+    setError(null);
+    setSuccess(false);
+    setLoading(true);
+
+    const token = window.localStorage.getItem("token");
+    if (!token) {
+      setError("Você precisa fazer login para continuar.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const { url, options } = USER_PREFERENCES_UPDATE(
+        {
+          notifications,
+          reminders,
+          darkMode,
+        },
+        token
+      );
+      const { response, json } = await request(url, options);
+
+      if (response.ok) {
+        setSuccess(true);
+        if (json.user) {
+          setData(json.user);
+        }
+      } else {
+        setError(json.message || "Erro ao salvar preferências.");
+      }
+    } catch (err) {
+      setError("Ocorreu um erro ao salvar preferências.");
     } finally {
       setLoading(false);
     }
@@ -231,10 +283,14 @@ const Profile = () => {
                   <input
                     type="password"
                     id="password"
-                    value={password}
-                    onChange={({ target }) => setPassword(target.value)}
+                    value={password.value}
+                    onChange={password.onChange}
+                    onBlur={password.onBlur}
                     placeholder="Digite sua nova senha"
                   />
+                  {password.error && (
+                    <p className={styles.error}>{password.error}</p>
+                  )}
                 </div>
 
                 <div className={styles.formGroup}>
@@ -242,10 +298,14 @@ const Profile = () => {
                   <input
                     type="password"
                     id="confirmPassword"
-                    value={confirmPassword}
-                    onChange={({ target }) => setConfirmPassword(target.value)}
+                    value={confirmPassword.value}
+                    onChange={confirmPassword.onChange}
+                    onBlur={confirmPassword.onBlur}
                     placeholder="Confirme sua nova senha"
                   />
+                  {confirmPassword.error && (
+                    <p className={styles.error}>{confirmPassword.error}</p>
+                  )}
                 </div>
 
                 {error && <p className={styles.error}>{error}</p>}
@@ -270,29 +330,53 @@ const Profile = () => {
                 Configure suas preferências de treino e notificações.
               </p>
 
-              <form>
+              <form onSubmit={handleSavePreferences}>
                 <div className={styles.formGroup}>
                   <label className={styles.checkboxLabel}>
-                    <input type="checkbox" className={styles.checkbox} />
+                    <input
+                      type="checkbox"
+                      className={styles.checkbox}
+                      checked={notifications}
+                      onChange={(e) => setNotifications(e.target.checked)}
+                    />
                     <span>Receber notificações de novos treinos</span>
                   </label>
                 </div>
 
                 <div className={styles.formGroup}>
                   <label className={styles.checkboxLabel}>
-                    <input type="checkbox" className={styles.checkbox} />
+                    <input
+                      type="checkbox"
+                      className={styles.checkbox}
+                      checked={reminders}
+                      onChange={(e) => setReminders(e.target.checked)}
+                    />
                     <span>Receber lembretes de treino</span>
                   </label>
                 </div>
 
                 <div className={styles.formGroup}>
                   <label className={styles.checkboxLabel}>
-                    <input type="checkbox" className={styles.checkbox} />
+                    <input
+                      type="checkbox"
+                      className={styles.checkbox}
+                      checked={darkMode}
+                      onChange={(e) => setDarkMode(e.target.checked)}
+                    />
                     <span>Modo escuro</span>
                   </label>
                 </div>
 
-                <button className={styles.button}>Salvar Preferências</button>
+                <button className={styles.button} disabled={loading}>
+                  {loading ? "Salvando..." : "Salvar Preferências"}
+                </button>
+
+                {error && <p className={styles.error}>{error}</p>}
+                {success && (
+                  <p className={styles.success}>
+                    Preferências salvas com sucesso!
+                  </p>
+                )}
               </form>
             </div>
           )}
