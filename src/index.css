@@ -1,0 +1,4 @@
+/* Regra específica para corrigir o ícone de treinos */
+a.active svg path {
+  fill: #cb3939 !important;
+}

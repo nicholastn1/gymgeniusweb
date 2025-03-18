@@ -1,0 +1,430 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #cb3939;
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.addButton svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: transparent;
+}
+
+.addButton:hover {
+  background: #b33232;
+  transform: scale(1.05);
+}
+
+.addButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.loading {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+.error {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  color: #f31;
+  background-color: rgba(255, 51, 17, 0.1);
+  padding: 1rem;
+  border-radius: 0.4rem;
+}
+
+.emptyState {
+  text-align: center;
+  margin: 4rem 0;
+  padding: 2rem;
+  background-color: #2a2a2a;
+  border-radius: 0.5rem;
+}
+
+.emptyState p {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  color: #ccc;
+  background-color: transparent;
+}
+
+.workoutsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.workoutCard {
+  background-color: #2a2a2a;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.workoutCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.workoutHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.workoutHeader h2 {
+  font-size: 1.3rem;
+  margin: 0;
+  background-color: transparent;
+}
+
+.workoutActions {
+  display: flex;
+  gap: 0.5rem;
+  background-color: transparent;
+}
+
+.editButton, .deleteButton {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.2rem;
+  transition: 0.2s;
+}
+
+.editButton:hover {
+  color: #fff;
+  background-color: #444;
+}
+
+.deleteButton:hover {
+  color: #fff;
+  background-color: #cb3939;
+}
+
+.workoutDescription {
+  color: #ccc;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  background-color: transparent;
+}
+
+.exercisesList {
+  background-color: transparent;
+  margin-top: auto;
+}
+
+.exercisesList h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  background-color: transparent;
+}
+
+.exercisesList ul {
+  background-color: transparent;
+}
+
+.exerciseItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #444;
+  background-color: transparent;
+}
+
+.exerciseItem:last-child {
+  border-bottom: none;
+}
+
+.exerciseName {
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.exerciseDetails {
+  color: #ccc;
+  font-size: 0.9rem;
+  background-color: transparent;
+}
+
+.workoutFooter {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #444;
+  font-size: 0.9rem;
+  color: #999;
+  background-color: transparent;
+}
+
+.workoutDate {
+  background-color: transparent;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #242424;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  color: #fff;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.formGroup input, .formGroup textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 0.4rem;
+  border: 1px solid #444;
+  background-color: #333;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.formGroup input:focus, .formGroup textarea:focus {
+  outline: none;
+  border-color: #cb3939;
+  box-shadow: 0 0 0 2px rgba(203, 57, 57, 0.2);
+}
+
+.exercisesSection {
+  margin-top: 2rem;
+  border-top: 1px solid #444;
+  padding-top: 1.5rem;
+}
+
+.exercisesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.exercisesHeader h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.addExerciseButton {
+  background: none;
+  border: 1px solid #cb3939;
+  color: #cb3939;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.addExerciseButton:hover {
+  background-color: rgba(203, 57, 57, 0.1);
+}
+
+.exerciseForm {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #2a2a2a;
+  border-radius: 0.4rem;
+}
+
+.exerciseFormRow {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  gap: 1rem;
+  align-items: end;
+}
+
+.exerciseNameField, .exerciseSetsField, .exerciseRepsField {
+  background-color: transparent;
+}
+
+.exerciseNameField label, .exerciseSetsField label, .exerciseRepsField label {
+  background-color: transparent;
+}
+
+.removeExerciseButton {
+  background: none;
+  border: none;
+  color: #f31;
+  cursor: pointer;
+  padding: 0.8rem;
+  border-radius: 0.4rem;
+  transition: 0.2s;
+  height: 2.7rem;
+}
+
+.removeExerciseButton:hover {
+  background-color: rgba(255, 51, 17, 0.1);
+}
+
+.removeExerciseButton:disabled {
+  color: #666;
+  cursor: not-allowed;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cancelButton, .saveButton {
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.4rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cancelButton {
+  background: none;
+  border: 1px solid #444;
+  color: #ccc;
+}
+
+.cancelButton:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.saveButton {
+  background-color: #cb3939;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
+.saveButton:hover {
+  background-color: #b33232;
+}
+
+.cancelButton:disabled, .saveButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .workoutsList {
+    grid-template-columns: 1fr;
+  }
+
+  .exerciseFormRow {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .removeExerciseButton {
+    height: auto;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .modal {
+    padding: 1.5rem;
+    width: 95%;
+    max-height: 80vh;
+  }
+
+  .modalActions {
+    flex-direction: column;
+  }
+
+  .cancelButton, .saveButton {
+    width: 100%;
+  }
+
+  .workoutsList {
+    margin-bottom: 70px;
+  }
+}

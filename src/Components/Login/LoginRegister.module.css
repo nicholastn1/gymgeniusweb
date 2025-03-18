@@ -1,0 +1,71 @@
+.imageUploadContainer {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.imagePreview {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #242424;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #444;
+}
+
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagePreview svg {
+  width: 50%;
+  height: 50%;
+  color: #666;
+}
+
+.imageUploadActions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.imageUploadButton {
+  background: #cb3939;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.imageUploadButton:hover {
+  background: #b33232;
+}
+
+.removeImageButton {
+  background: none;
+  border: 1px solid #cb3939;
+  color: #cb3939;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.removeImageButton:hover {
+  background: rgba(203, 57, 57, 0.1);
+}
+
+.imageInput {
+  display: none;
+}

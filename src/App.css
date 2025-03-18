@@ -104,3 +104,30 @@ a {
 .AppBody {
   flex: 1;
 }
+
+/* Ajustes para dispositivos móveis com bottom navigation */
+@media (max-width: 40rem) {
+  body {
+    padding-top: 3.5rem; /* Ajustado para a altura menor do header em mobile */
+  }
+
+  .AppBody {
+    padding-bottom: 60px; /* Espaço para a bottom navigation */
+  }
+
+  /* Ajuste para o footer não ficar escondido sob a bottom navigation */
+  footer {
+    margin-bottom: 60px;
+  }
+
+  .container {
+    padding: 0 0.75rem; /* Padding reduzido para dispositivos móveis */
+  }
+}
+
+/* Ajustes para dispositivos muito pequenos */
+@media (max-width: 320px) {
+  .container {
+    padding: 0 0.5rem; /* Padding ainda mais reduzido para dispositivos muito pequenos */
+  }
+}
